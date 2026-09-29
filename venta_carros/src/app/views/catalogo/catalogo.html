@@ -1,3 +1,7 @@
 <h1>Catalogo</h1>
 <p>catalogo works!</p>
 
+<app-table [displayedColumns]="columns" [dataSource]="cars"></app-table>
+
+<!-- Component provides `columns` and `cars` directly; no inline script needed -->
+

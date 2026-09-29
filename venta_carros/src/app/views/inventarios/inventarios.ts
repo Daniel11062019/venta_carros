@@ -2,9 +2,9 @@ import { Component } from '@angular/core';
 import { TableComponent } from '../../components/table/table';
 
 @Component({
+  selector: 'app-inventarios',
   imports: [TableComponent],
-  selector: 'app-carrito',
-  styleUrl: './carrito.css',
-  templateUrl: './carrito.html',
+  templateUrl: './inventarios.html',
+  styleUrl: './inventarios.css',
 })
-export class Carrito {}
+export class Inventarios {}

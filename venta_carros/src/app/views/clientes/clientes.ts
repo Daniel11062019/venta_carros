@@ -1,8 +1,9 @@
 import { Component } from '@angular/core';
+import { TableComponent } from '../../components/table/table';
 
 @Component({
   selector: 'app-clientes',
-  imports: [],
+  imports: [TableComponent],
   templateUrl: './clientes.html',
   styleUrl: './clientes.css',
 })
