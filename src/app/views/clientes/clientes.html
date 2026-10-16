@@ -1,2 +1,86 @@
-<h1>Clientes</h1>
-<p>clientes works!</p>
+<div class="contenedor">
+
+  <h1>Clientes</h1>
+
+  <div class="tabla-container">
+
+    <table mat-table [dataSource]="dataSource" class="tabla-clientes">
+
+      <!-- NOMBRE -->
+      <ng-container matColumnDef="nombre">
+        <th mat-header-cell *matHeaderCellDef>
+          Nombre
+        </th>
+
+        <td mat-cell *matCellDef="let cliente">
+          {{ cliente.nombre }}
+        </td>
+      </ng-container>
+
+      <!-- APELLIDO -->
+      <ng-container matColumnDef="apellido">
+        <th mat-header-cell *matHeaderCellDef>
+          Apellido
+        </th>
+
+        <td mat-cell *matCellDef="let cliente">
+          {{ cliente.apellido }}
+        </td>
+      </ng-container>
+
+      <!-- CÉDULA -->
+      <ng-container matColumnDef="cedula">
+        <th mat-header-cell *matHeaderCellDef>
+          Cédula
+        </th>
+
+        <td mat-cell *matCellDef="let cliente">
+          {{ cliente.cedula }}
+        </td>
+      </ng-container>
+
+      <!-- TELÉFONO -->
+      <ng-container matColumnDef="telefono">
+        <th mat-header-cell *matHeaderCellDef>
+          Teléfono
+        </th>
+
+        <td mat-cell *matCellDef="let cliente">
+          {{ cliente.telefono }}
+        </td>
+      </ng-container>
+
+      <!-- SEXO -->
+      <ng-container matColumnDef="sexo">
+        <th mat-header-cell *matHeaderCellDef>
+          Sexo
+        </th>
+
+        <td mat-cell *matCellDef="let cliente">
+          {{ cliente.sexo }}
+        </td>
+      </ng-container>
+
+      <!-- FILA DE ENCABEZADOS -->
+      <tr
+        mat-header-row
+        *matHeaderRowDef="displayedColumns">
+      </tr>
+
+      <!-- FILAS -->
+      <tr
+        mat-row
+        *matRowDef="let row; columns: displayedColumns;">
+      </tr>
+
+    </table>
+
+    <!-- PAGINADOR -->
+    <mat-paginator
+      [pageSizeOptions]="[5, 10]"
+      showFirstLastButtons>
+    </mat-paginator>
+
+  </div>
+
+</div>

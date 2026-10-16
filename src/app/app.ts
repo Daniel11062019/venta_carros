@@ -8,5 +8,5 @@ import { MenuComponent } from './views/menu/menu.component';
   templateUrl: './app.html',
 })
 export class App {
-  protected readonly title = signal('Muebles_JS');
+  protected readonly title = signal('GH_AUTOS');
 }

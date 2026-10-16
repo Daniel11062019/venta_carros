@@ -1,0 +1,21 @@
+.contenedor {
+  margin-left: 250px;
+  padding: 30px;
+}
+
+h1 {
+  font-size: 32px;
+  margin-bottom: 35px;
+}
+
+table {
+  width: 100%;
+}
+
+th {
+  font-weight: bold;
+}
+
+mat-paginator {
+  margin-top: 10px;
+}
