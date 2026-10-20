@@ -4,6 +4,7 @@ import cors from 'cors';
 import clientesRoutes from './routes/cliente.roustes';
 import catalogoRoutes from './routes/catalogo.routes';
 import comprasRoutes from './routes/compras.routes';
+import perritosRoutes from './routes/perritos.routes';
 import { errorHandler } from './middleware/eroror.middleware';
  
 const app = express();
@@ -27,6 +28,7 @@ app.use(
 
 app.use('/api/v1/catalogo', catalogoRoutes);
 app.use('/api/v1/compras', comprasRoutes);
+app.use('/api/v1/perritos', perritosRoutes);
  
 app.use(errorHandler);
  
