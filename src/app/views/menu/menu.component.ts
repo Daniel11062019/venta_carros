@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { Component, OnInit, inject } from '@angular/core';
 import { toSignal } from '@angular/core/rxjs-interop';
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 
@@ -11,6 +11,8 @@ import { MatIconModule } from '@angular/material/icon';
 import { RouterLink, RouterOutlet } from '@angular/router';
 
 import { map } from 'rxjs/operators';
+
+import { PerritosService } from '../../services/perritos.service';
 
 @Component({
   selector: 'app-menu',
@@ -27,9 +29,10 @@ import { map } from 'rxjs/operators';
     RouterOutlet
   ],
 })
-export class MenuComponent {
+export class MenuComponent implements OnInit {
 
   private readonly breakpointObserver = inject(BreakpointObserver);
+  private readonly perritosService = inject(PerritosService);
 
   readonly isHandset = toSignal(
     this.breakpointObserver
@@ -39,4 +42,11 @@ export class MenuComponent {
       initialValue: false
     }
   );
+
+  ngOnInit(): void {
+    this.perritosService.getPerritos().subscribe({
+      next: (datos) => console.log('Perritos:', datos),
+      error: (error) => console.error('No se pudieron cargar los perritos', error)
+    });
+  }
 }
