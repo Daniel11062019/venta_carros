@@ -5,7 +5,7 @@ import { Perrito } from '../Models/PerritosModels';
 
 @Injectable({ providedIn: 'root' })
 export class PerritosService {
-  private readonly url = 'http://localhost:3000/api/v1/perritos';
+  private readonly url = 'http://localhost:3000/api/perritos';
 
   constructor(private http: HttpClient) {}
 
