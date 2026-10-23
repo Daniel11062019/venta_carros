@@ -28,7 +28,7 @@ app.use(
 
 app.use('/api/v1/catalogo', catalogoRoutes);
 app.use('/api/v1/compras', comprasRoutes);
-app.use('/api/v1/perritos', perritosRoutes);
+app.use('/api/perritos', perritosRoutes);
  
 app.use(errorHandler);
  
