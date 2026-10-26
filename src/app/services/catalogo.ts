@@ -2,10 +2,11 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Vehiculo } from '../Models/CatalogoModels';
+import { environment } from '../../environments/environment';
 
 @Injectable({ providedIn: 'root' })
 export class CatalogoService {
-  private readonly url = 'http://localhost:3000/api/v1/catalogo';
+  private readonly url = `${environment.apiUrl}/api/v1/catalogo`;
 
   constructor(private http: HttpClient) {}
 

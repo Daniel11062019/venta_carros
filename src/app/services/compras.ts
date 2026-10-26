@@ -2,10 +2,11 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Compra } from '../Models/ComprasModels';
+import { environment } from '../../environments/environment';
 
 @Injectable({ providedIn: 'root' })
 export class ComprasService {
-  private readonly url = 'http://localhost:3000/api/v1/compras';
+  private readonly url = `${environment.apiUrl}/api/v1/compras`;
 
   constructor(private http: HttpClient) {}
 
