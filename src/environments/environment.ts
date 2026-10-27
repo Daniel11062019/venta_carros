@@ -1,3 +1,3 @@
 export const environment = {
-  apiUrl: 'https://ventacarros-production.up.railway.app'
+  apiUrl: 'https://ventacarros-production-5e35.up.railway.app'
 };
