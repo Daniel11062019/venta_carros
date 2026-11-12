@@ -1,0 +1,63 @@
+<main class="pagina">
+  <section class="marca">
+    <p class="logo">GH <span>Autos</span></p>
+
+    <div class="mensaje">
+      <h2>Tu próximo carro empieza aquí.</h2>
+      <p>Entra para ver el catálogo, los clientes y las compras.</p>
+    </div>
+
+    <svg class="carro" viewBox="0 0 640 190" aria-hidden="true">
+      <path class="carroceria" d="M30 138c0-20 16-32 48-37l92-13c38-34 84-52 142-52 62 0 108 20 150 54 62 4 118 16 136 40 6 8 6 18 2 26H30z" />
+      <path class="ventana" d="M190 90c30-26 66-40 112-41v41H190zM318 49c44 1 80 15 110 41H318V49z" />
+      <circle class="llanta" cx="160" cy="142" r="34" />
+      <circle class="rin" cx="160" cy="142" r="15" />
+      <circle class="llanta" cx="490" cy="142" r="34" />
+      <circle class="rin" cx="490" cy="142" r="15" />
+      <path class="via" d="M0 178h640" />
+    </svg>
+  </section>
+
+  <section class="panel">
+    <form class="formulario" (ngSubmit)="iniciarSesion()">
+      <h1>Hola de nuevo</h1>
+      <p class="subtitulo">Ingresa con tu correo y contraseña.</p>
+
+      <mat-form-field appearance="outline">
+        <mat-label>Correo</mat-label>
+        <mat-icon matPrefix>mail_outline</mat-icon>
+        <input matInput type="email" name="correo" autocomplete="email" [(ngModel)]="correo" required />
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>Contraseña</mat-label>
+        <mat-icon matPrefix>lock_outline</mat-icon>
+        <input
+          matInput
+          [type]="verContrasena() ? 'text' : 'password'"
+          name="contrasena"
+          autocomplete="current-password"
+          [(ngModel)]="contrasena"
+          required
+        />
+        <button
+          matIconButton
+          matSuffix
+          type="button"
+          [attr.aria-label]="verContrasena() ? 'Ocultar contraseña' : 'Mostrar contraseña'"
+          (click)="verContrasena.set(!verContrasena())"
+        >
+          <mat-icon>{{ verContrasena() ? 'visibility_off' : 'visibility' }}</mat-icon>
+        </button>
+      </mat-form-field>
+
+      @if (error()) {
+        <p class="error" role="alert">{{ error() }}</p>
+      }
+
+      <button class="enviar" matButton="filled" type="submit" [disabled]="cargando()">Entrar</button>
+
+      <p class="cambiar">¿No tienes cuenta? <a routerLink="/registro">Regístrate</a></p>
+    </form>
+  </section>
+</main>

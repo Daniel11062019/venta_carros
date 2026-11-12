@@ -1,0 +1,155 @@
+/* Página de login y registro: las dos usan estos estilos */
+.pagina {
+  display: grid;
+  grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr);
+  min-height: 100vh;
+}
+
+/* Panel oscuro con la marca */
+.marca {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 32px;
+  padding: 48px 56px 0;
+  overflow: hidden;
+  color: #e8f4f3;
+  background:
+    radial-gradient(circle at 85% 15%, rgb(79 216 212 / 22%), transparent 45%),
+    linear-gradient(160deg, #0d2b2d, #071516);
+}
+
+.logo {
+  margin: 0;
+  font-size: 24px;
+  font-weight: 500;
+  letter-spacing: 0.5px;
+}
+
+.logo span {
+  color: #4fd8d4;
+}
+
+.mensaje h2 {
+  max-width: 460px;
+  margin: 0 0 16px;
+  font-size: 48px;
+  font-weight: 500;
+  line-height: 1.1;
+}
+
+.mensaje p {
+  max-width: 400px;
+  margin: 0;
+  font-size: 17px;
+  line-height: 1.5;
+  color: #b5cdcc;
+}
+
+.carro {
+  display: block;
+  width: 100%;
+  max-width: 620px;
+  margin-bottom: 32px;
+}
+
+.carroceria {
+  fill: #4fd8d4;
+}
+
+.ventana {
+  fill: #0d2b2d;
+}
+
+.llanta {
+  fill: #071516;
+}
+
+.rin {
+  fill: #e8f4f3;
+}
+
+.via {
+  fill: none;
+  stroke: rgb(232 244 243 / 35%);
+  stroke-width: 2;
+  stroke-dasharray: 28 16;
+}
+
+/* Panel del formulario */
+.panel {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 40px 24px;
+}
+
+.formulario {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  width: 100%;
+  max-width: 380px;
+}
+
+.formulario h1 {
+  margin: 0;
+  font-size: 32px;
+  font-weight: 500;
+}
+
+.subtitulo {
+  margin: 0 0 20px;
+  opacity: 0.75;
+}
+
+mat-icon[matPrefix] {
+  margin: 0 8px 0 12px;
+  opacity: 0.7;
+}
+
+.error {
+  margin: 0 0 12px;
+  padding: 10px 12px;
+  border-radius: 8px;
+  color: #8c1d18;
+  background: #f9dedc;
+}
+
+.enviar {
+  height: 48px;
+  margin-top: 16px;
+  font-size: 16px;
+}
+
+.cambiar {
+  margin: 16px 0 0;
+  text-align: center;
+}
+
+.cambiar a {
+  color: #00696b;
+  font-weight: 500;
+}
+
+/* Celular: la marca se reduce a una franja arriba */
+@media (max-width: 860px) {
+  .pagina {
+    grid-template-columns: minmax(0, 1fr);
+    grid-template-rows: auto 1fr;
+  }
+
+  .marca {
+    padding: 20px 24px;
+  }
+
+  .mensaje,
+  .carro {
+    display: none;
+  }
+
+  .panel {
+    align-items: flex-start;
+    padding: 32px 16px;
+  }
+}

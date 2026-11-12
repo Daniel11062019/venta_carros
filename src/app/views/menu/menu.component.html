@@ -1,67 +1,76 @@
 @let isHandset = this.isHandset();
 
-<mat-sidenav-container class="sidenav-container">
+@if (auth.usuario(); as usuario) {
+  <mat-sidenav-container class="sidenav-container">
 
-  <mat-sidenav
-    #drawer
-    class="sidenav"
-    fixedInViewport
-    [attr.role]="isHandset ? 'dialog' : 'navigation'"
-    [mode]="isHandset ? 'over' : 'side'"
-    [opened]="!isHandset">
+    <mat-sidenav
+      #drawer
+      class="sidenav"
+      fixedInViewport
+      [attr.role]="isHandset ? 'dialog' : 'navigation'"
+      [mode]="isHandset ? 'over' : 'side'"
+      [opened]="!isHandset">
 
-    <mat-toolbar>
-      Menu
-    </mat-toolbar>
+      <mat-toolbar>
+        Menu
+      </mat-toolbar>
 
-    <mat-nav-list>
+      <mat-nav-list>
 
-      <a mat-list-item routerLink="/clientes">
-        Perfil
-      </a>
+        <a mat-list-item routerLink="/clientes">
+          Perfil
+        </a>
 
-      <a mat-list-item routerLink="/catalogo">
-        Catalogo
-      </a>
+        <a mat-list-item routerLink="/catalogo">
+          Catalogo
+        </a>
 
-      <a mat-list-item routerLink="/compras">
-        Compras
-      </a>
+        <a mat-list-item routerLink="/compras">
+          Compras
+        </a>
 
-      <a mat-list-item routerLink="/contacto">
-        Contactanos
-      </a>
+        <a mat-list-item routerLink="/contacto">
+          Contactanos
+        </a>
 
-    </mat-nav-list>
+      </mat-nav-list>
 
-  </mat-sidenav>
+    </mat-sidenav>
 
-  <mat-sidenav-content>
+    <mat-sidenav-content>
 
-    <mat-toolbar>
+      <mat-toolbar>
 
-      @if (isHandset) {
-        <button
-          type="button"
-          aria-label="Toggle sidenav"
-          matIconButton
-          (click)="drawer.toggle()">
+        @if (isHandset) {
+          <button
+            type="button"
+            aria-label="Toggle sidenav"
+            matIconButton
+            (click)="drawer.toggle()">
 
-          <mat-icon>
-            menu
-          </mat-icon>
+            <mat-icon>
+              menu
+            </mat-icon>
 
-        </button>
-      }
+          </button>
+        }
 
-      <a routerLink="/inicio">
-        GH autos
-      </a>
+        <a routerLink="/inicio">
+          GH autos
+        </a>
 
-    </mat-toolbar>
+        <span class="espaciador"></span>
 
-    <router-outlet></router-outlet>
+        <span class="nombre-usuario">{{ usuario.nombre }}</span>
+        <button matButton type="button" (click)="cerrarSesion()">Cerrar sesión</button>
 
-  </mat-sidenav-content>
+      </mat-toolbar>
 
-</mat-sidenav-container>
+      <router-outlet></router-outlet>
+
+    </mat-sidenav-content>
+
+  </mat-sidenav-container>
+} @else {
+  <router-outlet></router-outlet>
+}

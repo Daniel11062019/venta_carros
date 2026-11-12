@@ -8,9 +8,11 @@ import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatListModule } from '@angular/material/list';
 import { MatIconModule } from '@angular/material/icon';
 
-import { RouterLink, RouterOutlet } from '@angular/router';
+import { Router, RouterLink, RouterOutlet } from '@angular/router';
 
 import { map } from 'rxjs/operators';
+
+import { AuthService } from '../../services/auth';
 
 @Component({
   selector: 'app-menu',
@@ -30,6 +32,8 @@ import { map } from 'rxjs/operators';
 export class MenuComponent {
 
   private readonly breakpointObserver = inject(BreakpointObserver);
+  private readonly router = inject(Router);
+  readonly auth = inject(AuthService);
 
   readonly isHandset = toSignal(
     this.breakpointObserver
@@ -39,4 +43,9 @@ export class MenuComponent {
       initialValue: false
     }
   );
+
+  cerrarSesion(): void {
+    this.auth.cerrarSesion();
+    this.router.navigate(['/login']);
+  }
 }

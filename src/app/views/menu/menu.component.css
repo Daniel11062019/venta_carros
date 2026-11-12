@@ -39,3 +39,13 @@ mat-nav-list a {
   text-decoration: none;
   cursor: pointer;
 }
+
+/* Empuja los botones de sesión a la esquina derecha */
+.espaciador {
+  flex: 1;
+}
+
+.nombre-usuario {
+  font-size: 14px;
+  margin-right: 8px;
+}
