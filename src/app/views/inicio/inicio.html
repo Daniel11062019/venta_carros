@@ -1,3 +1,25 @@
+<section class="bienvenida">
+  <p class="saludo">Bienvenido, {{ auth.usuario()?.nombre }}</p>
+  <h1>GH <span>Autos</span></h1>
+  <p>Administra el catálogo de vehículos, los clientes y las compras desde un solo lugar.</p>
+</section>
 
-<h1>Inicio</h1>
-<p>inicio works!</p>
+<div class="accesos">
+  <a class="acceso" routerLink="/catalogo">
+    <mat-icon>directions_car</mat-icon>
+    <h2>Catálogo</h2>
+    <p>Mira los carros disponibles.</p>
+  </a>
+
+  <a class="acceso" routerLink="/clientes">
+    <mat-icon>group</mat-icon>
+    <h2>Clientes</h2>
+    <p>Consulta las personas registradas.</p>
+  </a>
+
+  <a class="acceso" routerLink="/compras">
+    <mat-icon>receipt_long</mat-icon>
+    <h2>Compras</h2>
+    <p>Revisa el historial de ventas.</p>
+  </a>
+</div>

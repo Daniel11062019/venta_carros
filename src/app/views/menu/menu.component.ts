@@ -2,13 +2,11 @@ import { Component, inject } from '@angular/core';
 import { toSignal } from '@angular/core/rxjs-interop';
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 
-import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatButtonModule } from '@angular/material/button';
 import { MatSidenavModule } from '@angular/material/sidenav';
-import { MatListModule } from '@angular/material/list';
 import { MatIconModule } from '@angular/material/icon';
 
-import { Router, RouterLink, RouterOutlet } from '@angular/router';
+import { Router, RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router';
 
 import { map } from 'rxjs/operators';
 
@@ -20,12 +18,11 @@ import { AuthService } from '../../services/auth';
   templateUrl: './menu.component.html',
   styleUrl: './menu.component.css',
   imports: [
-    MatToolbarModule,
     MatButtonModule,
     MatSidenavModule,
-    MatListModule,
     MatIconModule,
     RouterLink,
+    RouterLinkActive,
     RouterOutlet
   ],
 })

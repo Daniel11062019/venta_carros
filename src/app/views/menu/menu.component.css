@@ -6,46 +6,195 @@
 .sidenav-container {
   height: 100vh;
   width: 100%;
+  background: #f3f7f7;
 }
 
+/* ===== Menú del costado ===== */
 .sidenav {
-  width: 220px;
+  display: flex;
+  flex-direction: column;
+  width: 250px;
+  border: none;
+  border-radius: 0;
+  color: #e8f4f3;
+  background:
+    radial-gradient(circle at 80% 0%, rgb(79 216 212 / 20%), transparent 45%),
+    linear-gradient(170deg, #0d2b2d, #071516);
 }
 
-.sidenav .mat-toolbar {
-  background-color: aqua;
+/* El contenido interno del sidenav también debe ser columna */
+.sidenav ::ng-deep .mat-drawer-inner-container {
+  display: flex;
+  flex-direction: column;
 }
 
-/* Opciones del menú */
-mat-nav-list {
-  padding-top: 0;
+.marca {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 28px 24px 24px;
 }
 
-mat-nav-list a {
-  height: 52px;
-  padding: 0 18px;
-  box-sizing: border-box;
+.marca-icono {
+  width: 40px;
+  height: 40px;
+  font-size: 26px;
+  line-height: 40px;
+  text-align: center;
+  border-radius: 12px;
+  color: #071516;
+  background: #4fd8d4;
 }
 
-/* Barra superior */
-.mat-toolbar {
+.marca-texto {
+  font-size: 28px;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+}
+
+.marca-texto span,
+.titulo span {
+  color: #4fd8d4;
+}
+
+.seccion {
+  margin: 8px 24px 8px;
+  font-size: 12px;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: #7fa3a1;
+}
+
+.opciones {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding: 0 12px;
+}
+
+.opciones a {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 12px 14px;
+  border-radius: 12px;
+  font-size: 15px;
+  color: #b5cdcc;
+  text-decoration: none;
+  transition: background 0.2s, color 0.2s;
+}
+
+.opciones a:hover {
+  color: #ffffff;
+  background: rgb(255 255 255 / 8%);
+}
+
+/* Opción de la página actual */
+.opciones a.activo {
+  color: #071516;
+  font-weight: 500;
+  background: #4fd8d4;
+}
+
+.usuario {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin: auto 12px 16px;
+  padding: 12px;
+  border-radius: 14px;
+  background: rgb(255 255 255 / 6%);
+}
+
+.avatar {
+  flex-shrink: 0;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  font-size: 18px;
+  font-weight: 600;
+  line-height: 40px;
+  text-align: center;
+  text-transform: uppercase;
+  color: #071516;
+  background: #4fd8d4;
+}
+
+.usuario-datos {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  flex: 1;
+}
+
+.usuario-datos strong {
+  overflow: hidden;
+  font-weight: 500;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.usuario-datos span {
+  font-size: 12px;
+  text-transform: capitalize;
+  color: #7fa3a1;
+}
+
+.usuario button {
+  color: #b5cdcc;
+}
+
+/* ===== Barra de arriba ===== */
+.barra {
   position: sticky;
   top: 0;
-  z-index: 1;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  height: 72px;
+  padding: 0 24px 0 12px;
+  background: rgb(255 255 255 / 92%);
+  border-bottom: 1px solid #dde7e6;
+  backdrop-filter: blur(8px);
 }
 
-.mat-toolbar a {
-  color: inherit;
+.titulo {
+  font-size: 30px;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  color: #0d2b2d;
   text-decoration: none;
-  cursor: pointer;
 }
 
-/* Empuja los botones de sesión a la esquina derecha */
 .espaciador {
   flex: 1;
 }
 
 .nombre-usuario {
   font-size: 14px;
-  margin-right: 8px;
+  color: #4a6463;
+}
+
+.pagina {
+  padding: 32px;
+}
+
+/* Celular: se esconde el saludo y se reduce el espacio */
+@media (max-width: 700px) {
+  .nombre-usuario {
+    display: none;
+  }
+
+  .barra {
+    padding: 0 12px 0 4px;
+  }
+
+  .titulo {
+    font-size: 24px;
+  }
+
+  .pagina {
+    padding: 20px 16px;
+  }
 }

@@ -3,6 +3,7 @@
 @if (auth.usuario(); as usuario) {
   <mat-sidenav-container class="sidenav-container">
 
+    <!-- MENÚ DEL COSTADO -->
     <mat-sidenav
       #drawer
       class="sidenav"
@@ -11,62 +12,66 @@
       [mode]="isHandset ? 'over' : 'side'"
       [opened]="!isHandset">
 
-      <mat-toolbar>
-        Menu
-      </mat-toolbar>
+      <div class="marca">
+        <mat-icon class="marca-icono">directions_car</mat-icon>
+        <span class="marca-texto">GH <span>Autos</span></span>
+      </div>
 
-      <mat-nav-list>
+      <p class="seccion">Menú</p>
 
-        <a mat-list-item routerLink="/clientes">
-          Perfil
+      <nav class="opciones">
+        <a routerLink="/inicio" routerLinkActive="activo" (click)="isHandset && drawer.close()">
+          <mat-icon>home</mat-icon> Inicio
         </a>
-
-        <a mat-list-item routerLink="/catalogo">
-          Catalogo
+        <a routerLink="/catalogo" routerLinkActive="activo" (click)="isHandset && drawer.close()">
+          <mat-icon>directions_car</mat-icon> Catálogo
         </a>
-
-        <a mat-list-item routerLink="/compras">
-          Compras
+        <a routerLink="/clientes" routerLinkActive="activo" (click)="isHandset && drawer.close()">
+          <mat-icon>group</mat-icon> Clientes
         </a>
-
-        <a mat-list-item routerLink="/contacto">
-          Contactanos
+        <a routerLink="/compras" routerLinkActive="activo" (click)="isHandset && drawer.close()">
+          <mat-icon>receipt_long</mat-icon> Compras
         </a>
+        <a routerLink="/contacto" routerLinkActive="activo" (click)="isHandset && drawer.close()">
+          <mat-icon>mail</mat-icon> Contáctanos
+        </a>
+      </nav>
 
-      </mat-nav-list>
+      <!-- USUARIO ABAJO -->
+      <div class="usuario">
+        <div class="avatar">{{ usuario.nombre.charAt(0) }}</div>
+        <div class="usuario-datos">
+          <strong>{{ usuario.nombre }}</strong>
+          <span>{{ usuario.rol }}</span>
+        </div>
+        <button matIconButton type="button" aria-label="Cerrar sesión" (click)="cerrarSesion()">
+          <mat-icon>logout</mat-icon>
+        </button>
+      </div>
 
     </mat-sidenav>
 
+    <!-- CONTENIDO -->
     <mat-sidenav-content>
 
-      <mat-toolbar>
+      <header class="barra">
+        <button matIconButton type="button" aria-label="Abrir o cerrar menú" (click)="drawer.toggle()">
+          <mat-icon>menu</mat-icon>
+        </button>
 
-        @if (isHandset) {
-          <button
-            type="button"
-            aria-label="Toggle sidenav"
-            matIconButton
-            (click)="drawer.toggle()">
-
-            <mat-icon>
-              menu
-            </mat-icon>
-
-          </button>
-        }
-
-        <a routerLink="/inicio">
-          GH autos
-        </a>
+        <a class="titulo" routerLink="/inicio">GH <span>Autos</span></a>
 
         <span class="espaciador"></span>
 
-        <span class="nombre-usuario">{{ usuario.nombre }}</span>
-        <button matButton type="button" (click)="cerrarSesion()">Cerrar sesión</button>
+        <span class="nombre-usuario">Hola, {{ usuario.nombre }}</span>
+        <button matButton="outlined" type="button" (click)="cerrarSesion()">
+          <mat-icon>logout</mat-icon> Cerrar sesión
+        </button>
+      </header>
 
-      </mat-toolbar>
-
-      <router-outlet></router-outlet>
+      <main class="pagina">
+        <router-outlet></router-outlet>
+      </main>
 
     </mat-sidenav-content>
 

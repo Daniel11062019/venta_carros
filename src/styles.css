@@ -1,1 +1,37 @@
-/* You can add global styles to this file, and also import other style files */
+/* Estilos que comparten todas las páginas */
+
+/* Título grande de cada página */
+.encabezado {
+  margin-bottom: 28px;
+}
+
+.encabezado h1 {
+  margin: 0 0 6px;
+  font-size: 36px;
+  font-weight: 700;
+  color: #0d2b2d;
+}
+
+.encabezado p {
+  margin: 0;
+  font-size: 16px;
+  color: #5b7473;
+}
+
+/* Rayita de color debajo del título */
+.encabezado h1::after {
+  content: '';
+  display: block;
+  width: 56px;
+  height: 4px;
+  margin-top: 10px;
+  border-radius: 4px;
+  background: #4fd8d4;
+}
+
+/* En celular el título es más pequeño */
+@media (max-width: 700px) {
+  .encabezado h1 {
+    font-size: 28px;
+  }
+}

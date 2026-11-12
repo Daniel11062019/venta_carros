@@ -1,0 +1,40 @@
+.datos {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 20px;
+}
+
+.dato {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 24px;
+  border: 1px solid #dde7e6;
+  border-radius: 18px;
+  background: #ffffff;
+  box-shadow: 0 8px 24px rgb(13 43 45 / 6%);
+}
+
+.dato mat-icon {
+  flex-shrink: 0;
+  width: 48px;
+  height: 48px;
+  font-size: 26px;
+  line-height: 48px;
+  text-align: center;
+  border-radius: 14px;
+  color: #00696b;
+  background: #dff5f4;
+}
+
+.dato h2 {
+  margin: 0 0 4px;
+  font-size: 16px;
+  font-weight: 600;
+  color: #0d2b2d;
+}
+
+.dato p {
+  margin: 0;
+  color: #5b7473;
+}

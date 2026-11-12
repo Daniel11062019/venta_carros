@@ -1,32 +1,19 @@
-import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
-import { MatTableDataSource, MatTableModule } from '@angular/material/table';
-import { MatPaginator, MatPaginatorModule } from '@angular/material/paginator';
-import { Compra } from '../../Models/ComprasModels';
+import { Component, signal } from '@angular/core';
 import { ComprasService } from '../../services/compras';
+import { Table } from '../../componentes/table/table';
 
 @Component({
   selector: 'app-compras',
-  standalone: true,
-  imports: [MatTableModule, MatPaginatorModule],
+  imports: [Table],
   templateUrl: './compras.html',
-  styleUrl: './compras.css'
+  styleUrl: './compras.css',
 })
-export class Compras implements OnInit, AfterViewInit {
-  displayedColumns = ['idCompra', 'cliente', 'vehiculo', 'fecha', 'precio', 'estado'];
-  dataSource = new MatTableDataSource<Compra>([]);
+export class Compras {
+  comprasData = signal<any[]>([]);
 
-  @ViewChild(MatPaginator) paginator!: MatPaginator;
-
-  constructor(private comprasService: ComprasService) {}
-
-  ngOnInit(): void {
-    this.comprasService.getCompras().subscribe({
-      next: (compras) => this.dataSource.data = compras,
-      error: (error) => console.error('No se pudieron cargar las compras', error)
+  constructor(private comprasService: ComprasService) {
+    this.comprasService.getCompras().subscribe((data: any[]) => {
+      this.comprasData.set(data);
     });
-  }
-
-  ngAfterViewInit(): void {
-    this.dataSource.paginator = this.paginator;
   }
 }
