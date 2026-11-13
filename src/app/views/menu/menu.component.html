@@ -26,12 +26,17 @@
         <a routerLink="/catalogo" routerLinkActive="activo" (click)="isHandset && drawer.close()">
           <mat-icon>directions_car</mat-icon> Catálogo
         </a>
-        <a routerLink="/clientes" routerLinkActive="activo" (click)="isHandset && drawer.close()">
-          <mat-icon>group</mat-icon> Clientes
-        </a>
-        <a routerLink="/compras" routerLinkActive="activo" (click)="isHandset && drawer.close()">
-          <mat-icon>receipt_long</mat-icon> Compras
-        </a>
+
+        <!-- Solo el administrador ve clientes y compras -->
+        @if (usuario.rol === 'admin') {
+          <a routerLink="/clientes" routerLinkActive="activo" (click)="isHandset && drawer.close()">
+            <mat-icon>group</mat-icon> Clientes
+          </a>
+          <a routerLink="/compras" routerLinkActive="activo" (click)="isHandset && drawer.close()">
+            <mat-icon>receipt_long</mat-icon> Compras
+          </a>
+        }
+
         <a routerLink="/contacto" routerLinkActive="activo" (click)="isHandset && drawer.close()">
           <mat-icon>mail</mat-icon> Contáctanos
         </a>

@@ -1,7 +1,7 @@
 <section class="bienvenida">
   <p class="saludo">Bienvenido, {{ auth.usuario()?.nombre }}</p>
   <h1>GH <span>Autos</span></h1>
-  <p>Administra el catálogo de vehículos, los clientes y las compras desde un solo lugar.</p>
+  <p>Encuentra tu próximo carro y revisa todo desde un solo lugar.</p>
 </section>
 
 <div class="accesos">
@@ -11,15 +11,24 @@
     <p>Mira los carros disponibles.</p>
   </a>
 
-  <a class="acceso" routerLink="/clientes">
-    <mat-icon>group</mat-icon>
-    <h2>Clientes</h2>
-    <p>Consulta las personas registradas.</p>
-  </a>
+  <!-- Solo el administrador ve clientes y compras -->
+  @if (auth.usuario()?.rol === 'admin') {
+    <a class="acceso" routerLink="/clientes">
+      <mat-icon>group</mat-icon>
+      <h2>Clientes</h2>
+      <p>Consulta las personas registradas.</p>
+    </a>
 
-  <a class="acceso" routerLink="/compras">
-    <mat-icon>receipt_long</mat-icon>
-    <h2>Compras</h2>
-    <p>Revisa el historial de ventas.</p>
+    <a class="acceso" routerLink="/compras">
+      <mat-icon>receipt_long</mat-icon>
+      <h2>Compras</h2>
+      <p>Revisa el historial de ventas.</p>
+    </a>
+  }
+
+  <a class="acceso" routerLink="/contacto">
+    <mat-icon>mail</mat-icon>
+    <h2>Contáctanos</h2>
+    <p>Escríbenos o llámanos.</p>
   </a>
 </div>
