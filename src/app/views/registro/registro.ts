@@ -51,7 +51,13 @@ export class Registro {
         )
         .subscribe({
           next: () => {
-            this.router.navigate(['/catalogo']);
+            Swal.fire({
+              icon: 'success',
+              title: 'Usuario creado',
+              text: 'Ahora inicia sesión con tu correo y contraseña',
+            }).then(() => {
+              this.router.navigate(['/login']);
+            });
           },
           error: (respuesta) => {
             Swal.fire({

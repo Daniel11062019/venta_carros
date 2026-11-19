@@ -22,10 +22,9 @@ export class AuthService {
       .pipe(tap((usuario) => this.guardarSesion(usuario)));
   }
 
+  // Solo crea el usuario. No inicia sesión: después tiene que entrar por el login.
   registrar(nombre: string, correo: string, contrasena: string): Observable<Usuario> {
-    return this.http
-      .post<Usuario>(`${this.url}/registro`, { nombre, correo, contrasena })
-      .pipe(tap((usuario) => this.guardarSesion(usuario)));
+    return this.http.post<Usuario>(`${this.url}/registro`, { nombre, correo, contrasena });
   }
 
   cerrarSesion(): void {
