@@ -5,5 +5,5 @@ import { AuthService } from '../services/auth';
 // Sin sesión iniciada, cualquier página protegida manda al login.
 export const authGuard: CanActivateFn = () => {
   const auth = inject(AuthService);
-  return auth.usuario() ? true : inject(Router).createUrlTree(['/login']);
+  return auth.usuario ? true : inject(Router).createUrlTree(['/login']);
 };

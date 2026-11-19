@@ -5,5 +5,5 @@ import { AuthService } from '../services/auth';
 // Solo el administrador entra. Un cliente vuelve al catálogo.
 export const adminGuard: CanActivateFn = () => {
   const auth = inject(AuthService);
-  return auth.usuario()?.rol === 'admin' ? true : inject(Router).createUrlTree(['/catalogo']);
+  return auth.usuario?.rol === 'admin' ? true : inject(Router).createUrlTree(['/catalogo']);
 };

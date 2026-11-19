@@ -1,4 +1,4 @@
-import { Component, signal } from '@angular/core';
+import { Component } from '@angular/core';
 import { MenuComponent } from './views/menu/menu.component';
 
 @Component({
@@ -8,5 +8,5 @@ import { MenuComponent } from './views/menu/menu.component';
   templateUrl: './app.html',
 })
 export class App {
-  protected readonly title = signal('GH_AUTOS');
+  title = 'GH_AUTOS';
 }

@@ -1,38 +1,68 @@
-import { Component, inject, signal } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { Component } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Router, RouterLink } from '@angular/router';
-import { MatButtonModule } from '@angular/material/button';
+import { MatCardModule } from '@angular/material/card';
 import { MatFormFieldModule } from '@angular/material/form-field';
-import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
+import { MatButtonModule } from '@angular/material/button';
+import Swal from 'sweetalert2';
 import { AuthService } from '../../services/auth';
 
 @Component({
   selector: 'app-registro',
-  imports: [FormsModule, RouterLink, MatButtonModule, MatFormFieldModule, MatIconModule, MatInputModule],
+  imports: [CommonModule, ReactiveFormsModule, RouterLink, MatCardModule, MatFormFieldModule, MatInputModule, MatButtonModule],
   templateUrl: './registro.html',
   styleUrl: '../login/login.css',
 })
 export class Registro {
-  private readonly auth = inject(AuthService);
-  private readonly router = inject(Router);
+  public formRegistro: FormGroup;
 
-  nombre = '';
-  correo = '';
-  contrasena = '';
-  readonly error = signal('');
-  readonly cargando = signal(false);
-  readonly verContrasena = signal(false);
+  constructor(private fb: FormBuilder, private authService: AuthService, private router: Router) {
+    this.formRegistro = this.fb.group({
+      nombre: ['', [Validators.required]],
 
-  registrarse(): void {
-    this.error.set('');
-    this.cargando.set(true);
-    this.auth.registrar(this.nombre, this.correo, this.contrasena).subscribe({
-      next: () => this.router.navigate(['/catalogo']),
-      error: (respuesta) => {
-        this.cargando.set(false);
-        this.error.set(respuesta.error?.message ?? 'No se pudo conectar con el servidor');
-      },
+      email: ['', [Validators.required, Validators.email]],
+
+      password: [
+        '',
+        [
+          Validators.required,
+          Validators.minLength(8),
+        ],
+      ],
     });
+  }
+
+  registrarse() {
+    if (this.formRegistro.invalid) {
+      Swal.fire({
+        icon: 'error',
+        title: 'Oops...',
+        text: 'Registro inválido',
+      });
+      return;
+    } else {
+      this.authService
+        .registrar(
+          this.formRegistro.get('nombre')?.value,
+          this.formRegistro.get('email')?.value,
+          this.formRegistro.get('password')?.value
+        )
+        .subscribe({
+          next: () => {
+            this.router.navigate(['/catalogo']);
+          },
+          error: (respuesta) => {
+            Swal.fire({
+              icon: 'error',
+              title: 'Oops...',
+              text: respuesta.error?.message ?? 'No se pudo conectar con el servidor',
+            });
+          },
+        });
+    }
+
+    console.log(this.formRegistro.value);
   }
 }

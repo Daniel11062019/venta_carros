@@ -1,37 +1,60 @@
-import { Component, inject, signal } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { Component } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Router, RouterLink } from '@angular/router';
-import { MatButtonModule } from '@angular/material/button';
+import { MatCardModule } from '@angular/material/card';
 import { MatFormFieldModule } from '@angular/material/form-field';
-import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
+import { MatButtonModule } from '@angular/material/button';
+import Swal from 'sweetalert2';
 import { AuthService } from '../../services/auth';
 
 @Component({
   selector: 'app-login',
-  imports: [FormsModule, RouterLink, MatButtonModule, MatFormFieldModule, MatIconModule, MatInputModule],
+  imports: [CommonModule, ReactiveFormsModule, RouterLink, MatCardModule, MatFormFieldModule, MatInputModule, MatButtonModule],
   templateUrl: './login.html',
   styleUrl: './login.css',
 })
 export class Login {
-  private readonly auth = inject(AuthService);
-  private readonly router = inject(Router);
+  public formLogin: FormGroup;
 
-  correo = '';
-  contrasena = '';
-  readonly error = signal('');
-  readonly cargando = signal(false);
-  readonly verContrasena = signal(false);
+  constructor(private fb: FormBuilder, private authService: AuthService, private router: Router) {
+    this.formLogin = this.fb.group({
+      email: ['', [Validators.required, Validators.email]],
 
-  iniciarSesion(): void {
-    this.error.set('');
-    this.cargando.set(true);
-    this.auth.login(this.correo, this.contrasena).subscribe({
-      next: () => this.router.navigate(['/catalogo']),
-      error: (respuesta) => {
-        this.cargando.set(false);
-        this.error.set(respuesta.error?.message ?? 'No se pudo conectar con el servidor');
-      },
+      password: [
+        '',
+        [
+          Validators.required,
+          Validators.minLength(8),
+        ],
+      ],
     });
+  }
+
+  login() {
+    if (this.formLogin.invalid) {
+      Swal.fire({
+        icon: 'error',
+        title: 'Oops...',
+        text: 'Login inválido',
+      });
+      return;
+    } else {
+      this.authService.login(this.formLogin.get('email')?.value, this.formLogin.get('password')?.value).subscribe({
+        next: () => {
+          this.router.navigate(['/catalogo']);
+        },
+        error: (respuesta) => {
+          Swal.fire({
+            icon: 'error',
+            title: 'Oops...',
+            text: respuesta.error?.message ?? 'No se pudo conectar con el servidor',
+          });
+        },
+      });
+    }
+
+    console.log(this.formLogin.value);
   }
 }

@@ -1,5 +1,4 @@
-import { Component, inject } from '@angular/core';
-import { toSignal } from '@angular/core/rxjs-interop';
+import { Component } from '@angular/core';
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 
 import { MatButtonModule } from '@angular/material/button';
@@ -7,8 +6,6 @@ import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatIconModule } from '@angular/material/icon';
 
 import { Router, RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router';
-
-import { map } from 'rxjs/operators';
 
 import { AuthService } from '../../services/auth';
 
@@ -28,18 +25,18 @@ import { AuthService } from '../../services/auth';
 })
 export class MenuComponent {
 
-  private readonly breakpointObserver = inject(BreakpointObserver);
-  private readonly router = inject(Router);
-  readonly auth = inject(AuthService);
+  // true cuando la pantalla es de celular
+  isHandset = false;
 
-  readonly isHandset = toSignal(
-    this.breakpointObserver
-      .observe(Breakpoints.Handset)
-      .pipe(map(result => result.matches)),
-    {
-      initialValue: false
-    }
-  );
+  constructor(
+    private breakpointObserver: BreakpointObserver,
+    private router: Router,
+    public auth: AuthService
+  ) {
+    this.breakpointObserver.observe(Breakpoints.Handset).subscribe((result) => {
+      this.isHandset = result.matches;
+    });
+  }
 
   cerrarSesion(): void {
     this.auth.cerrarSesion();

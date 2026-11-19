@@ -12,7 +12,7 @@ export class ComprasService {
 
   getCompras(): Observable<Compra[]> {
     return this.http.get<Compra[]>(this.url);
-  }
+  } 
 
   getCompra(id: number): Observable<Compra> {
     return this.http.get<Compra>(`${this.url}/${id}`);

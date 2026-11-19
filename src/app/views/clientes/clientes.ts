@@ -1,4 +1,4 @@
-import { Component, signal } from '@angular/core';
+import { Component } from '@angular/core';
 import { ClientesService } from '../../services/clientes';
 import { Table } from '../../componentes/table/table';
 
@@ -9,11 +9,11 @@ import { Table } from '../../componentes/table/table';
   styleUrl: './clientes.css',
 })
 export class Clientes {
-  clientesData = signal<any[]>([]);
+  clientesData: any[] = [];
 
   constructor(private clientesService: ClientesService) {
     this.clientesService.getClientes().subscribe((data: any[]) => {
-      this.clientesData.set(data);
+      this.clientesData = data;
     });
   }
 }

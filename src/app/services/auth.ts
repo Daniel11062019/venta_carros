@@ -1,5 +1,4 @@
-import { inject, Injectable, PLATFORM_ID, signal } from '@angular/core';
-import { isPlatformBrowser } from '@angular/common';
+import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable, tap } from 'rxjs';
 import { Usuario } from '../Models/UsuarioModels';
@@ -7,14 +6,15 @@ import { environment } from '../../environments/environment';
 
 @Injectable({ providedIn: 'root' })
 export class AuthService {
-  private readonly url = `${environment.apiUrl}/api/v1/auth`;
-  private readonly claveSesion = 'usuario';
+  private url = `${environment.apiUrl}/api/v1/auth`;
+  private claveSesion = 'usuario';
 
-  private readonly esNavegador = isPlatformBrowser(inject(PLATFORM_ID));
+  // Usuario con la sesión iniciada (null si nadie ha entrado)
+  usuario: Usuario | null = null;
 
-  readonly usuario = signal<Usuario | null>(this.leerSesion());
-
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient) {
+    this.usuario = this.leerSesion();
+  }
 
   login(correo: string, contrasena: string): Observable<Usuario> {
     return this.http
@@ -30,12 +30,12 @@ export class AuthService {
 
   cerrarSesion(): void {
     sessionStorage.removeItem(this.claveSesion);
-    this.usuario.set(null);
+    this.usuario = null;
   }
 
   // sessionStorage solo existe en el navegador, no en el servidor (SSR).
   private leerSesion(): Usuario | null {
-    if (!this.esNavegador) return null;
+    if (typeof sessionStorage === 'undefined') return null;
 
     const guardado = sessionStorage.getItem(this.claveSesion);
     return guardado ? JSON.parse(guardado) : null;
@@ -43,6 +43,6 @@ export class AuthService {
 
   private guardarSesion(usuario: Usuario): void {
     sessionStorage.setItem(this.claveSesion, JSON.stringify(usuario));
-    this.usuario.set(usuario);
+    this.usuario = usuario;
   }
 }
