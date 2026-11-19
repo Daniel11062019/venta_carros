@@ -1,7 +1,8 @@
-import { Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { MenuComponent } from './views/menu/menu.component';
 
 @Component({
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [MenuComponent],
   selector: 'app-root',
   styleUrl: './app.css',

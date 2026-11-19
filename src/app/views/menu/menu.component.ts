@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 
 import { MatButtonModule } from '@angular/material/button';
@@ -10,6 +10,7 @@ import { Router, RouterLink, RouterLinkActive, RouterOutlet } from '@angular/rou
 import { AuthService } from '../../services/auth';
 
 @Component({
+  changeDetection: ChangeDetectionStrategy.Eager,
   selector: 'app-menu',
   standalone: true,
   templateUrl: './menu.component.html',

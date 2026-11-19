@@ -1,8 +1,9 @@
-import { Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { CatalogoService } from '../../services/catalogo';
 import { Table } from '../../componentes/table/table';
 
 @Component({
+  changeDetection: ChangeDetectionStrategy.Eager,
   selector: 'app-catalogo',
   imports: [Table],
   templateUrl: './catalogo.html',

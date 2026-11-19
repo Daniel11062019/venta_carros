@@ -1,8 +1,9 @@
-import { Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { ComprasService } from '../../services/compras';
 import { Table } from '../../componentes/table/table';
 
 @Component({
+  changeDetection: ChangeDetectionStrategy.Eager,
   selector: 'app-compras',
   imports: [Table],
   templateUrl: './compras.html',
