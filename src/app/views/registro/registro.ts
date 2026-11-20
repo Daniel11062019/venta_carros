@@ -6,13 +6,14 @@ import { MatCardModule } from '@angular/material/card';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
+import { MatIconModule } from '@angular/material/icon';
 import Swal from 'sweetalert2';
 import { AuthService } from '../../services/auth';
 
 @Component({
   changeDetection: ChangeDetectionStrategy.Eager,
   selector: 'app-registro',
-  imports: [CommonModule, ReactiveFormsModule, RouterLink, MatCardModule, MatFormFieldModule, MatInputModule, MatButtonModule],
+  imports: [CommonModule, ReactiveFormsModule, RouterLink, MatCardModule, MatFormFieldModule, MatInputModule, MatButtonModule, MatIconModule],
   templateUrl: './registro.html',
   styleUrl: '../login/login.css',
 })

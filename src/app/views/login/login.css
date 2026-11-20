@@ -1,35 +1,182 @@
 /* Login y registro usan estos estilos */
+
+/* Fondo oscuro con degradado, igual al menú de la app */
 .pagina {
+  position: relative;
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
   min-height: 100vh;
-  padding: 16px;
+  padding: 24px 16px;
+  overflow: hidden;
+  box-sizing: border-box;
+  background:
+    radial-gradient(circle at 15% 20%, rgb(79 216 212 / 25%), transparent 40%),
+    radial-gradient(circle at 85% 85%, rgb(79 216 212 / 18%), transparent 45%),
+    linear-gradient(160deg, #0d2b2d, #071516);
 }
 
+/* Círculos de adorno */
+.burbuja {
+  position: absolute;
+  border-radius: 50%;
+  border: 2px solid rgb(79 216 212 / 25%);
+}
+
+.burbuja-1 {
+  width: 380px;
+  height: 380px;
+  top: -120px;
+  right: -100px;
+}
+
+.burbuja-2 {
+  width: 260px;
+  height: 260px;
+  bottom: -80px;
+  left: -80px;
+}
+
+/* Tarjeta blanca del formulario */
 mat-card {
+  position: relative;
   width: 100%;
-  max-width: 400px;
-  padding: 16px;
+  max-width: 420px;
+  padding: 36px 32px 28px;
+  border-radius: 24px;
+  background: #ffffff;
+  box-shadow: 0 24px 60px rgb(0 0 0 / 35%);
+  box-sizing: border-box;
+  animation: aparecer 0.5s ease-out;
 }
 
-mat-card-title {
-  margin-bottom: 24px;
+@keyframes aparecer {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Logo GH Autos */
+.marca {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.marca-icono {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 64px;
+  height: 64px;
+  border-radius: 18px;
+  background: linear-gradient(135deg, #4fd8d4, #1a9e9a);
+  box-shadow: 0 8px 20px rgb(79 216 212 / 45%);
+}
+
+.marca-icono mat-icon {
+  width: 34px;
+  height: 34px;
+  font-size: 34px;
+  color: #0d2b2d;
+}
+
+.marca-texto {
+  margin: 12px 0 0;
   font-size: 26px;
+  font-weight: 700;
+  color: #0d2b2d;
+}
+
+.marca-texto span {
+  color: #1a9e9a;
+}
+
+/* Títulos */
+mat-card-title {
+  text-align: center;
+  font-size: 24px;
+  font-weight: 600;
+  color: #0d2b2d;
+}
+
+.subtitulo {
+  margin: 6px 0 24px;
+  text-align: center;
+  color: #5b7473;
+}
+
+/* Formulario */
+mat-card-content {
+  padding: 0;
 }
 
 form {
   display: flex;
   flex-direction: column;
-  gap: 8px;
+  gap: 6px;
 }
 
+mat-icon[matPrefix] {
+  margin: 0 8px 0 12px;
+  color: #1a9e9a;
+}
+
+/* Botón */
 button[type='submit'] {
-  height: 44px;
-  margin-top: 8px;
+  height: 50px;
+  margin-top: 10px;
+  border-radius: 14px;
+  font-size: 16px;
+  font-weight: 600;
+  letter-spacing: 0.3px;
+  color: #0d2b2d;
+  background: linear-gradient(135deg, #4fd8d4, #2bbcb7);
+  box-shadow: 0 8px 20px rgb(79 216 212 / 40%);
+  transition: transform 0.15s, box-shadow 0.15s;
 }
 
+button[type='submit']:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 26px rgb(79 216 212 / 55%);
+}
+
+/* Enlace para cambiar entre login y registro */
 .cambiar {
-  margin: 20px 0 0;
+  margin: 22px 0 0;
   text-align: center;
+  color: #5b7473;
+}
+
+.cambiar a {
+  color: #1a9e9a;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.cambiar a:hover {
+  text-decoration: underline;
+}
+
+/* Texto de abajo */
+.pie {
+  position: relative;
+  margin: 24px 0 0;
+  font-size: 13px;
+  color: rgb(232 244 243 / 60%);
+}
+
+/* Celular */
+@media (max-width: 480px) {
+  mat-card {
+    padding: 28px 20px 22px;
+    border-radius: 20px;
+  }
 }

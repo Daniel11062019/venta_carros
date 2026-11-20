@@ -1,12 +1,26 @@
 <div class="pagina">
+  <!-- Círculos de adorno del fondo -->
+  <div class="burbuja burbuja-1"></div>
+  <div class="burbuja burbuja-2"></div>
+
   <mat-card>
+    <!-- MARCA -->
+    <div class="marca">
+      <div class="marca-icono">
+        <mat-icon>directions_car</mat-icon>
+      </div>
+      <p class="marca-texto">GH <span>Autos</span></p>
+    </div>
+
     <mat-card-title>Iniciar sesión</mat-card-title>
+    <p class="subtitulo">Bienvenido de nuevo, ingresa tus datos</p>
 
     <mat-card-content>
       <form [formGroup]="formLogin" (ngSubmit)="login()">
         <!-- EMAIL -->
         <mat-form-field appearance="outline">
           <mat-label>Correo</mat-label>
+          <mat-icon matPrefix>mail_outline</mat-icon>
 
           <input matInput type="email" formControlName="email" />
 
@@ -22,6 +36,7 @@
         <!-- PASSWORD -->
         <mat-form-field appearance="outline">
           <mat-label>Contraseña</mat-label>
+          <mat-icon matPrefix>lock_outline</mat-icon>
 
           <input matInput type="password" formControlName="password" />
 
@@ -47,4 +62,6 @@
       <p class="cambiar">¿No tienes cuenta? <a routerLink="/registro">Regístrate</a></p>
     </mat-card-content>
   </mat-card>
+
+  <p class="pie">© GH Autos · Venta de vehículos</p>
 </div>
