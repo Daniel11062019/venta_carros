@@ -36,10 +36,22 @@ export class Login {
 
   login() {
     if (this.formLogin.invalid) {
+      // Muestra en rojo los errores de cada campo
+      this.formLogin.markAllAsTouched();
+
+      let mensaje = 'Login inválido';
+      if (this.formLogin.get('email')?.invalid) {
+        mensaje = 'Escribe un correo válido';
+      } else if (this.formLogin.get('password')?.hasError('minlength')) {
+        mensaje = 'La contraseña debe tener mínimo 8 caracteres';
+      } else if (this.formLogin.get('password')?.hasError('required')) {
+        mensaje = 'Escribe tu contraseña';
+      }
+
       Swal.fire({
         icon: 'error',
         title: 'Oops...',
-        text: 'Login inválido',
+        text: mensaje,
       });
       return;
     } else {
