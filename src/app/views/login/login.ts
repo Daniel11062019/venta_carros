@@ -44,8 +44,16 @@ export class Login {
       return;
     } else {
       this.authService.login(this.formLogin.get('email')?.value, this.formLogin.get('password')?.value).subscribe({
-        next: () => {
-          this.router.navigate(['/catalogo']);
+        next: (usuario) => {
+          Swal.fire({
+            icon: 'success',
+            title: 'Bienvenido',
+            text: usuario.nombre,
+            timer: 1500,
+            showConfirmButton: false,
+          }).then(() => {
+            this.router.navigate(['/catalogo']);
+          });
         },
         error: (respuesta) => {
           Swal.fire({
